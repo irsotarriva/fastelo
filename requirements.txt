@@ -1,0 +1,12 @@
+# torch is installed separately for the platform, e.g.
+#   CPU:  pip install torch --index-url https://download.pytorch.org/whl/cpu
+#   CUDA: pip install torch
+chess>=1.11
+zstandard>=0.23
+numpy>=2.0
+matplotlib>=3.9
+safetensors>=0.4
+huggingface_hub>=0.25
+gradio>=6.0        # the local demo
+pillow
+pytest>=8

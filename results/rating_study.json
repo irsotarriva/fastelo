@@ -1,0 +1,54 @@
+{
+ "note": "Simulations and offline comparisons behind the choice of the move-based rating (5 October 2026). Simulated users are the calibrated player at a target strength, or the strong player's best move ('best'). Elo values are means over the stated number of runs.",
+ "estimator_vs_fixed_bot": {
+  "what": "Whole-game Elo estimator, uncorrected: estimate of the user (white) after 20 moves against a bot of fixed strength; 5 games per cell.",
+  "bot": [700, 1100, 1500, 1900, 2300],
+  "user": {
+   "best": [1245, 1449, 1631, 1903, 2265],
+   "2200": [1178, 1527, 1710, 2098, 2182],
+   "1500": [1011, 1451, 1496, 1681, 1568],
+   "900": [949, 1072, 1139, 1102, 1244]
+  }
+ },
+ "move_rating_vs_fixed_bot": {
+  "what": "Move-based rating, uncorrected: estimate of the user (white) after 20 moves against a bot of fixed strength; 4 games per cell.",
+  "bot": [700, 1500, 2300],
+  "user": {
+   "best": [2222, 2379, 2412],
+   "2200": [2144, 2264, 2271],
+   "1500": [1636, 1499, 1464],
+   "900": [1085, 1232, 1020]
+  }
+ },
+ "estimator_closed_loop": {
+  "what": "Whole-game Elo estimator, uncorrected, with the bot following the estimate: combined result of 3 games of 30 moves; 3 sessions per cell. Policies: the bot re-targets every move / is fixed during a game / moves 10% of the way per move.",
+  "policy": ["every move", "fixed per game", "slow"],
+  "user": {
+   "best": [1569, 1509, 1459],
+   "2200": [2151, 2022, 1806],
+   "1500": [1683, 1466, 1412],
+   "900": [969, 1078, 947]
+  }
+ },
+ "move_rating_closed_loop": {
+  "what": "Move-based rating with the bot following it every move: combined result after 1 and 2 games of up to 30 moves; 6 sessions per target.",
+  "target": [700, 1000, 1300, 1600, 1900, 2200],
+  "corrected_after_1": [938, 938, 1235, 1688, 2004, 2383],
+  "corrected_after_2": [778, 1008, 1352, 1653, 2087, 2404],
+  "uncorrected_after_1": [937, 1077, 1337, 1702, 1958, 2285],
+  "uncorrected_after_2": [768, 1072, 1348, 1717, 2048, 2300]
+ },
+ "variants": {
+  "what": "Variants of the move-based rating on 3,300 real test players, uncorrected: mean absolute error (Elo) after 10 / 20 / 40 own moves, and the 90th percentile of the error after 20.",
+  "rows": [
+   {"name": "sum of log-probabilities, posterior mean", "mae": [243, 190, 158], "p90_20": 405},
+   {"name": "with a cap of 4 nats per move (used)", "mae": [246, 191, 158], "p90_20": 404},
+   {"name": "maximum likelihood instead of the mean", "mae": [275, 209, 170], "p90_20": 447},
+   {"name": "outlier model, 2% random moves", "mae": [248, 193, 159], "p90_20": 407},
+   {"name": "outlier model, 5%", "mae": [252, 195, 159], "p90_20": 414},
+   {"name": "outlier model, 10%", "mae": [258, 199, 160], "p90_20": 426},
+   {"name": "outlier rate fitted per player", "mae": [263, 200, 160], "p90_20": 424},
+   {"name": "outlier rate marginalised", "mae": [258, 198, 159], "p90_20": 420}
+  ]
+ }
+}

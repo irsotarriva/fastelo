@@ -1,0 +1,8 @@
+.venv/
+data/
+runs/
+tools/
+*.log
+__pycache__/
+.pytest_cache/
+.gradio/

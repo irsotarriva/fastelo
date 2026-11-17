@@ -38,7 +38,7 @@ the notebook only loads results and plots them.
 | | |
 |---|---|
 | Play against it | [live demo]({SITE}) |
-| Code | [github.com/irsotarriva/fastelo]({GITHUB}) (GPL-3.0) |
+| Code | [github.com/irsotarriva/fastelo]({GITHUB}) (MIT) |
 | Trained models | [huggingface.co/irsotarriva/fastelo]({HF_MODEL}) |
 | Synthetic games dataset | [fastelo-synthetic-games]({HF_DATA}) (CC0) |
 | This notebook | [github.com/irsotarriva/MLIdeas]({MLIDEAS}) |
@@ -454,7 +454,8 @@ run in a small serverless function.
 
 ## Licence and attribution
 
-Code and weights: GNU GPL v3.0. Synthetic games: CC0.
+Code and weights: MIT. Synthetic games: CC0. Dependencies keep their own licences (python-chess
+is GPL-3.0-or-later; see the README).
 
 - Data: [Lichess open database](https://database.lichess.org/) (CC0).
 - Teacher: [Leela Chess Zero](https://lczero.org/) (GPL-3.0), network

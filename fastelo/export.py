@@ -76,7 +76,7 @@ sdk: gradio
 sdk_version: {gradio_version}
 app_file: app.py
 pinned: false
-license: gpl-3.0
+license: mit
 models:
   - {repo}
 short_description: Play a human-like bot and get a live Elo estimate
@@ -91,7 +91,8 @@ combined into one rating. The bot re-targets your current best estimate before e
 
 Models, training details and measured results: [{repo}](https://huggingface.co/{repo}).
 
-Licence: GPL-3.0. Trained on the [Lichess open database](https://database.lichess.org/) (CC0) with
+Licence: MIT (fastelo code and weights). This app also uses python-chess (GPL-3.0-or-later),
+so the app as a whole is distributed under GPL-3.0 terms. Trained on the [Lichess open database](https://database.lichess.org/) (CC0) with
 [Leela Chess Zero](https://lczero.org/) (network T1-256x10-distilled) as the teacher.
 '''
 
@@ -166,7 +167,7 @@ def model_card(repo, infos, cal, results, dataset="irsotarriva/fastelo-synthetic
     knots = "\n".join(f"| {k['elo']:.0f} | {k['conditioning']:.0f} | {k['temperature']:.2f} | {k['mix']:.2f} |"
                       for k in cal["knots"] if k["conditioning"] is not None)
     return f"""---
-license: gpl-3.0
+license: mit
 library_name: pytorch
 tags:
   - chess
@@ -257,7 +258,9 @@ demo runs.
 
 ## Licence and attribution
 
-Code and weights are released under the **GNU GPL v3.0** (see `LICENSE`).
+Code and weights are released under the **MIT License** (see `LICENSE`). Releases before the
+switch to MIT were GPL-3.0. Dependencies keep their own licences; notably python-chess is
+GPL-3.0-or-later (see the third-party licence list in the GitHub README).
 
 - **Data:** [Lichess open database](https://database.lichess.org/), released under CC0.
 - **Teacher:** [Leela Chess Zero](https://lczero.org/) (GPL-3.0 engine; network

@@ -127,8 +127,41 @@ Tests that need Stockfish or a Leela network are skipped when those are not inst
 
 ## Licence and attribution
 
-GNU GPL v3.0 (see `LICENSE`).
+fastelo's own code and model weights are released under the **MIT License** (see `LICENSE`).
+Versions up to and including commit `65c5612` were released under the GNU GPL v3.0, and those
+versions remain available under GPL-3.0.
 
-- Data: [Lichess open database](https://database.lichess.org/) (CC0).
-- Teacher: [Leela Chess Zero](https://lczero.org/) (GPL-3.0), network T1-256x10-distilled-swa-2432500.
-- Calibration analysis: [Stockfish](https://stockfishchess.org/) (GPL-3.0).
+### Third-party licences
+
+fastelo's dependencies, engines and data keep their own licences. The MIT License covers only
+fastelo's own files.
+
+**Python packages** (`requirements.txt`, plus PyTorch and ONNX Runtime installed separately):
+
+| Package | Used for | Licence |
+|---|---|---|
+| [python-chess](https://github.com/niklasf/python-chess) (`chess`) | board, move generation, PGN parsing, UCI engine control | **GPL-3.0-or-later** |
+| [NumPy](https://numpy.org/) | arrays, the NumPy-only `fastelo.lite` runtime | BSD-3-Clause |
+| [PyTorch](https://pytorch.org/) | training and evaluation | BSD-style (see PyTorch's `LICENSE`) |
+| [ONNX Runtime](https://onnxruntime.ai/) | running the Leela teacher network (optional) | MIT |
+| [zstandard](https://github.com/indygreg/python-zstandard) | reading `.pgn.zst` Lichess dumps | BSD-3-Clause |
+| [Matplotlib](https://matplotlib.org/) | plots | Matplotlib License (PSF-based) |
+| [safetensors](https://github.com/huggingface/safetensors) | saving and loading weights | Apache-2.0 |
+| [huggingface_hub](https://github.com/huggingface/huggingface_hub) | uploading and downloading models | Apache-2.0 |
+| [Gradio](https://gradio.app/) | the local demo | Apache-2.0 |
+| [Pillow](https://python-pillow.org/) | board images in the demo | MIT-CMU |
+| [pytest](https://pytest.org/) | tests | MIT |
+
+**Engines and data** (not distributed with fastelo):
+
+| Component | Used for | Licence |
+|---|---|---|
+| [Lichess open database](https://database.lichess.org/) | training data | CC0 |
+| [Leela Chess Zero](https://lczero.org/) (lc0), network T1-256x10-distilled-swa-2432500 | teacher for the strong player; the players were trained on its outputs, and the network itself is not redistributed | GPL-3.0 (engine) |
+| [Stockfish](https://stockfishchess.org/) | calibration analysis, run as a separate program over UCI | GPL-3.0 |
+
+**Note on python-chess:** python-chess is licensed under GPL-3.0-or-later. fastelo's own source
+is MIT, which is GPL-compatible. But any program distributed together with python-chess, such as
+the Gradio demo or the serverless function built by `scripts/build_vercel_function.py`, must be
+distributed as a whole under the terms of GPL-3.0. To use fastelo under MIT terms alone, replace
+the python-chess dependency.
